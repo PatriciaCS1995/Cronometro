@@ -1,3 +1,3 @@
 # Cronometro :timer_clock:
 
-#### Este é meu cronometro em JavaScript e html. 
+#### Este é meu cronometro em JavaScript e HTML. 
