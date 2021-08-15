@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="origin" name="referrer">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Cronometro simples</title>
+    <style> 
+      
+            .fundo{
+                background-image: url("/home/patricia/Documentos/projetos javascript/Cronometro");
+                right: 10%;
+                position: absolute;
+                border: #333333;
+                opacity: 0.5;
+                background-color: rgb(8, 8, 8);
+                top: 0%;
+                
+
+                
+            }
+            .titulo {
+                background-color: rgba(58, 58, 47, 0.576);
+                font-family: Georgia, 'Times New Roman', Times, serif;
+                color: rgb(29, 11, 3);
+                position:absolute;
+                text-align: center;
+                border-radius: 10px;
+                margin-top: 20px;
+                transform: translate(-50%, -50%);
+                top: 10%;
+                left: 50%;
+                padding: 10px;
+                
+                
+                
+                
+            }
+            
+            .cronometro{
+                position: absolute;
+                background-color: rgba(58, 58, 47, 0.7);
+                margin: auto;
+                border-radius: 15px;
+                margin-top: 15%;
+                padding: 15px;
+                text-align: center;
+                top: 10%;
+                left: 40%;
+            }
+                .button {
+	            box-shadow: 0px 1px 0px 0px #fff6af;
+	            background:linear-gradient(to bottom, #ffec64 5%, #ffab23 100%);
+	            background-color:#ffec64;
+	            border-radius:6px;
+	            border:1px solid #ffaa22;
+	            display:inline-block;
+                cursor:pointer;
+                color:#333333;
+                font-family:Arial;
+                font-size:15px;
+                font-weight:bold;
+                padding:6px 16px;
+                text-decoration:none;
+                text-shadow:0px 1px 0px #ffee66;
+                opacity: 1;
+                }
+                .button:hover {
+                    background:linear-gradient(to bottom, #ffab23 5%, #ffec64 100%);
+                    background-color:#ffab23;
+                }
+                .button:active {
+                    position:relative;
+                    top:1px;
+                }  
+                .display {
+                    background-color: rgb(240, 233, 233);
+                    font-family: Arial, Helvetica, sans-serif;
+                    color: red;
+                }
+               
+    </style>
+</head>
+<body>
+    <div class="fundo">
+    <img src="ceu2.jpeg" alt="Imagem">  
+    </div>
+    
+    <div class="titulo" style=>
+    <h1>Cronometro simples</h1>
+    <p>Esta página foi criada como primeiro projeto simples de cronômetro em JS</p>
+<form name="form_main">
+    </div>
+    <div>   
+    <div class="cronometro">
+       <div class="display">
+        <span id="hour">00</span>:<span id="minute">00</span>:<span id="second">00</span>:<span id="millisecond">000</span>:
+        </div>
+        <br>
+
+    <button class="button" type="button" name="start">start</button>
+    <button class="button" type="button" name="pause">pause</button>
+    <button class="button" type="button" name="reset">reset</button>
+    
+</form>
+</div>
+
+<script>
+    "use strict";
+    let hour= 0;
+    let minute= 0;
+    let second= 0;
+    let millisecond= 0;
+
+    let cron;
+
+    document.form_main.start.onclick = () => start();
+    document.form_main.pause.onclick = () => pause();
+    document.form_main.reset.onclick = () => reset();
+
+    function start() {
+        pause();
+        cron = setInterval(() => {timer(); }, 10);
+    }
+
+    function pause() {
+        clearInterval    (cron);
+    }
+
+    function reset() {
+    hour= 0;
+    minute= 0;
+    second= 0;
+    millisecond= 0;
+    document.getElementById('hour').innerText = '00';
+    document.getElementById('minute').innerText = '00';
+    document.getElementById('second').innerText = '00';
+    document.getElementById('millisecond').innerText = '000';
+    }
+
+    function timer(){
+        if((millisecond += 10) == 1000) {
+             millisecond = 0;
+             second++;
+        }
+        if(second == 60) {
+            second = 0;
+            minute++;
+        }
+        if(minute == 60) {
+            minute = 0;
+            hour++;
+        }
+        
+    document.getElementById('hour').innerText = returnData(hour);
+    document.getElementById('minute').innerText = returnData(minute);
+    document.getElementById('second').innerText = returnData(second);
+    document.getElementById('millisecond').innerText = returnData(millisecond);
+        
+    }
+
+    function returnData(input) {
+        return input > 10 ? input : `0${input}`;
+    }
+
+</script>
+</body>
+</html>
